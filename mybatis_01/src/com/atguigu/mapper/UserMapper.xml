@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--以上是固定的格式，每次照着粘贴-->
+
+<!--namespace属性是名称空间（包名），它的值只能等于Mapper接口的全类名-->
+
+<mapper namespace="com.atguigu.mapper.UserMapper">
+    <!--
+    select语句就写select标签，update语句就写update标签
+    -->
+    <!--
+    id属性：是唯一的一个标识，必须等于方法名
+    parameterType属性：设置方法的参数类型（optional）【当形参传入的是JavaBean时强烈推荐写上parameterType属性】
+    resultType属性：设置查询回来的每一行记录是什么样的数类【only available in query statements】
+    -->
+
+    <select id="queryUserById" parameterType="int" resultType="com.atguigu.pojo.User">
+        select id, last_name as lastName, sex from t_user where id = #{id};
+    </select>
+
+    <insert id="insertUser" parameterType="com.atguigu.pojo.User">
+        INSERT INTO t_user(id,last_name,sex) VALUES (#{id},#{lastName},#{sex});
+    </insert>
+
+    <update id="updateUser" parameterType="com.atguigu.pojo.User">
+        update t_user set last_name = #{lastName}, sex = #{sex} where id = #{id};
+    </update>
+
+    <delete id="deleteUser">
+        delete from t_user where id = #{id};
+    </delete>
+
+</mapper>
