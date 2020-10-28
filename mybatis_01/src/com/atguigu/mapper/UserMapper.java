@@ -1,6 +1,7 @@
 package com.atguigu.mapper;
 
 import com.atguigu.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,9 @@ public interface UserMapper {
     int updateUser(User user);
 
     int deleteUser(Integer id);
+
+    List<User> queryUsersBySexOrName(@Param("sex") Integer sex, @Param("name") String name);
+
+    List<User> queryUsersLikeName(@Param("name") String name);
 
 }

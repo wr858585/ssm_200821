@@ -32,4 +32,17 @@
         delete from t_user where id = #{id};
     </delete>
 
+    <select id="queryUsers" resultType="com.atguigu.pojo.User">
+        select id, last_name as lastName, sex from t_user;
+    </select>
+
+    <select id="queryUsersBySexOrName" resultType="com.atguigu.pojo.User">
+        select id, last_name as lastName, sex from t_user where last_name = #{name} or sex = #{sex};
+    </select>
+
+    <!--concat才能彻底解决sql查询注入的问题-->
+    <select id="queryUsersLikeName" resultType="com.atguigu.pojo.User">
+        select id, last_name as lastName, sex from t_user where last_name like concat('%',#{name},'%');
+    </select>
+
 </mapper>

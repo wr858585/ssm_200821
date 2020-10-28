@@ -6,16 +6,27 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author oono
  * @date 2020 10 27
  */
 public class MyBatisTest {
+
+    //把sqlSessionFactory对象申明为全局对象，才能在每个方法中使用
+    SqlSessionFactory sqlSessionFactory;
+
+    @Before
+    public void setup() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+    }
 
     @Test
     public void testQueryUserById() throws IOException {
@@ -93,8 +104,52 @@ public class MyBatisTest {
         //1.获取mybatis-config.xml中的配置信息
         InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
 
+        //2.用sqlSessionFactory创建session对象
+        SqlSession session = new SqlSessionFactoryBuilder().build(is).openSession();
 
+        //3.创建mapper的实现类，调用CRUD方法
+        try{
+            UserMapper mapper = session.getMapper(UserMapper.class);
+            mapper.deleteUser(2);
+            session.commit();
+        } finally{
+            session.close();
+        }
+    }
 
+    @Test
+    public void testQueryUsers(){
+
+        //1.直接用setup()方法中已经创建好的对象sqlSessionFactory来openSession
+
+        //2.创建UserMapper接口的实现类，调用CRUD
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            UserMapper mapperImpl = sqlSession.getMapper(UserMapper.class);
+            mapperImpl.queryUsers().forEach(System.out::println);
+        }
+    }
+
+    @Test
+    public void testQueryUserBySexOrName() throws IOException {
+
+        //1.直接使用setup()方法生成的SqlSessionFactory对象
+        //2.try(...){...}这样不用使用finally对(...)中的语句进行关流了，会自动关流
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()){
+            UserMapper mapperImpl = sqlSession.getMapper(UserMapper.class);
+            List<User> users = mapperImpl.queryUsersBySexOrName(1, "庄熙");
+            System.out.println(users);
+        }
+    }
+
+    @Test
+    public void testQueryUsersLikeName(){
+
+        //1.直接使用setup()方法生成的SqlSessionFactory对象
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()){
+            //2.生成mapperImpl，调用方法
+            UserMapper mapperImpl = sqlSession.getMapper(UserMapper.class);
+            System.out.println(mapperImpl.queryUsersLikeName("熙"));
+        }
     }
 
 
