@@ -45,7 +45,10 @@ public class KeyMapperTest {
             Key key = mapperImpl.queryKeyByIdForTwoSteps(1);
             System.out.println(key.getId());
             System.out.println(key.getName());
+            Thread.sleep(2000);
             System.out.println(key.getLock());
-         }
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
