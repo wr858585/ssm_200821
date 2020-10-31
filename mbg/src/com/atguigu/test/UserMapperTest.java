@@ -1,8 +1,14 @@
 package com.atguigu.test;
 
 import com.atguigu.pojo.User;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.InputStream;
 
 import static org.junit.Assert.*;
 
@@ -12,12 +18,19 @@ import static org.junit.Assert.*;
  */
 public class UserMapperTest {
 
+    SqlSessionFactory sqlSessionFactory;
+
     @Before
     public void setUp() throws Exception {
+        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
     }
 
     @Test
     public void countByExample() {
+        try(SqlSession sqlSession = sqlSessionFactory.openSession()){
+
+        }
     }
 
     @Test

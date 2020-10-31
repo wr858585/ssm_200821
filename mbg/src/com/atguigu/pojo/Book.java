@@ -15,6 +15,30 @@ public class Book {
 
     private Integer stock;
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", sales=" + sales +
+                ", stock=" + stock +
+                '}';
+    }
+
+    public Book(Integer id, String name, String author, BigDecimal price, Integer sales, Integer stock) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.sales = sales;
+        this.stock = stock;
+    }
+
+    public Book() {
+    }
+
     public Integer getId() {
         return id;
     }

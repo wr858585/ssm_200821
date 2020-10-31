@@ -20,7 +20,7 @@
             <dataSource type="POOLED">
                 <!-- 每次修改：数据库的连接属性：driver，url，username，password -->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mbg"/>
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>
             </dataSource>
