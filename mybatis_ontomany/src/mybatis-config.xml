@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--格式固定，每次粘贴-->
+
+
+<configuration>
+
+    <settings>
+        <!-- 打开延迟加载的开关 -->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <!-- 将积极加载改为消极加载  按需加载 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!-- 每次修改：数据库的连接属性：driver，url，username，password -->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 每次修改：mappers用于引入mapper.xml配置文件（sql语句的配置文件） -->
+    <mappers>
+        <!--相对路径从src算起-->
+        <!--配置好才写！！！！！！！！！！！！！！！有多少mapper文件就要配置多少resources，或者如下写成包-->
+        <package name="com.atguigu.mapper"/>
+    </mappers>
+</configuration>

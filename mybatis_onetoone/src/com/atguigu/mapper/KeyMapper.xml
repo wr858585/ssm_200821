@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--以上是固定的格式，每次照着粘贴-->
+
+<!--namespace属性是名称空间（包名），它的值只能等于Mapper接口的全类名-->
+
+<mapper namespace="com.atguigu.mapper.KeyMapper">
+
+    <!--
+        id属性：是唯一的标识
+        type属性：是将每一行转换的具体类型
+    -->
+
+    <!--resultMap标签的作用！！！！！！！！-->
+    <!--
+        resultMap：手动映射
+        id是其唯一标识，type是每一行要转换的的具体类型
+    -->
+    <resultMap id="queryKeyByIdResultMap" type="com.atguigu.pojo.Key">
+
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--方案1：级联属性映射-->
+<!--
+        <result column="lock.id" property="lock.id"/>
+        <result column="lock.name" property="lock.name"/>
+-->
+        <!--方案2：association标签-->
+        <association property="lock" javaType="com.atguigu.pojo.Lock">
+            <result column="lock_id" property="id"/>
+            <result column="lock_name" property="name"/>
+        </association>
+
+    </resultMap>
+
+    <!--
+         /**
+         * 根据Key编号查询key[pojo]信息（常用列）
+         * @param id：key的编号
+         * @return
+         */
+         Key queryKeyById(Integer id);
+    -->
+    <select id="queryKeyById" resultMap="queryKeyByIdResultMap">
+        select
+            t_key.id as id,
+            t_key.name as name,
+            t_lock.id as lock_id,
+            t_lock.name as lock_name
+        from
+            t_key join t_lock
+        on
+            t_key.lock_id = t_lock.id
+        where
+            t_key.id = #{id}
+    </select>
+
+    <!--华丽的分割线-->
+
+    <resultMap id="queryKeyByIdForTwoStepsResultMap" type="com.atguigu.pojo.Key">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--
+            association使用一次查询得到子对象
+                property="lock"属性名
+                select表示调用哪个查询结果得到子对象（名称空间namespace + id）
+                column="lock_id"表示将结果集resultMap中的哪个列column作为参数去调用select方法
+        -->
+        <association property="lock" column="lock_id" select="com.atguigu.mapper.LockMapper.queryLockById" />
+
+    </resultMap>
+
+    <!--
+     /**
+     * 两次查询，一次查key（常用列表），一次查lock（不常用表）
+     * @param id：key的编号
+     * @return
+     */
+    Key queryKeyByIdForTwoSteps(Integer id);
+    -->
+    <select id="queryKeyByIdForTwoSteps" resultMap="queryKeyByIdForTwoStepsResultMap">
+        select id, name,lock_id from t_key where id = #{id};
+    </select>
+</mapper>

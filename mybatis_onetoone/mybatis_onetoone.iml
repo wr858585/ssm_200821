@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../mybatis_onetoone">
+      <sourceFolder url="file://$MODULE_DIR$/../mybatis_onetoone/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="junit_4.12">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../mybatis_onetoone/lib/junit_4.12.jar!/" />
+          <root url="jar://$MODULE_DIR$/../mybatis_onetoone/lib/log4j-1.2.17.jar!/" />
+          <root url="jar://$MODULE_DIR$/../mybatis_onetoone/lib/mybatis-3.5.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../mybatis_onetoone/lib/mysql-connector-java-5.1.7-bin.jar!/" />
+          <root url="jar://$MODULE_DIR$/../mybatis_onetoone/lib/org.hamcrest.core_1.3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

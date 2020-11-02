@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--以上是固定的格式，每次照着粘贴-->
+
+<!--namespace属性是名称空间（包名），它的值只能等于Mapper接口的全类名-->
+
+<mapper namespace="com.atguigu.mapper.LockMapper">
+    <select id="queryLockById" resultType="com.atguigu.pojo.Lock">
+        select id,name from t_lock where id = #{id};
+    </select>
+
+</mapper>

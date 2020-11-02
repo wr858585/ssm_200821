@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--
+        <bean>标签：放在<beans>标签内，表示配置一个Bean对象
+            class属性：表示配置Bean的全类名是什么
+            id属性：是这个bean的唯一标识
+    -->
+
+    <bean id="p1" class="com.atguigu.pojo.Person">
+        <!--
+            <property>标签：放在<bean>标签内，表示给bean对象的属性配置value
+                name属性：变量名/属性名
+                value属性：属性的值
+        -->
+        <property name="id" value="1"/>
+        <property name="name" value="ioc的第一个hello"/>
+        <property name="age" value="18"/>
+        <property name="phone" value="12312312333"/>
+    </bean>
+
+    <bean id="p2" class="com.atguigu.pojo.Person">
+        <property name="id" value="2"/>
+        <property name="name" value="ioc的第二个hello"/>
+        <property name="age" value="19"/>
+        <property name="phone" value="11223344555"/>
+    </bean>
+
+    <bean id="p3" class="com.atguigu.pojo.Person">
+        <constructor-arg name="id" value="3"/>
+        <constructor-arg name="name" value="庄熙三号"/>
+        <constructor-arg name="age" value="11"/>
+        <constructor-arg name="phone" value="110"/>
+    </bean>
+
+    <bean id="p4" class="com.atguigu.pojo.Person">
+        <constructor-arg index="0" value="4"/>
+        <constructor-arg index="1" value="参数索引赋值"/>
+        <constructor-arg index="2" value="18"/>
+        <constructor-arg index="3" value="120"/>
+    </bean>
+
+    <bean id="p5" class="com.atguigu.pojo.Person">
+<!--
+    public Person(Integer id, String name, Integer age, String phone){...} 有参构造器1
+    public Person(Integer id, String name, String phone, Integer age){...} 有参构造器2
+-->
+        <constructor-arg index="0" value="5"/>
+        <constructor-arg index="1" value="用index+type给构造器赋值"/>
+        <!--如果不适用type属性，则会默认使用上面的那个构造器。我们这里指定type，则会给有参构造器2赋值new对象-->
+        <constructor-arg index="2" type="java.lang.String" value="110"/>
+        <constructor-arg index="3" type="java.lang.Integer" value="130011001"/>
+    </bean>
+
+    <!--p标签使用前要先导包；使用起来比其他的简洁-->
+    <bean id="p6" class="com.atguigu.pojo.Person"
+          p:name="p标签的名字哦" p:age="18">
+        <!--null标签需要在property标签内使用，置空该属性的值-->
+        <property name="phone"><null></null></property>
+    </bean>
+
+    <!--Car的bean标签-->
+    <bean id="car" class="com.atguigu.pojo.Car">
+        <property name="carNo" value="神车1号"/>
+        <property name="carType" value="奔驰"/>
+    </bean>
+
+    <bean id="p8" class="com.atguigu.pojo.Person">
+        <property name="name" value="8号bean"/>
+        <!--用property标签中的ref属性连接自定义类的标签id-->
+        <property name="car" ref="car"/>
+    </bean>
+
+    <bean id="p9" class="com.atguigu.pojo.Person">
+        <property name="name" value="9号bean"/>
+        <!--也可以使用内部类的方式，但是作用域只在这个bean标签内了，出了以外不能获取到此内部类-->
+        <!--内部类要放到bean标签中的property标签中-->
+        <property name="car">
+            <bean id="innerCar" class="com.atguigu.pojo.Car">
+                <property name="carNo" value="神车2号"/>
+                <property name="carType" value="宝马"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="p10" class="com.atguigu.pojo.Person">
+        <property name="name" value="10号bean"/>
+        <!--
+            list标签写在property标签里
+            元素为value标签
+        -->
+        <property name="cities">
+            <list>
+                <value>北京</value>
+                <value>上海</value>
+                <value>广州</value>
+                <value>深圳</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="p11" class="com.atguigu.pojo.Person">
+        <property name="name" value="11号bean"/>
+        <!--
+            map标签和list标签一样，写在property标签里
+            元素为entry标签
+        -->
+        <!--
+            map标签表示赋值的属性是Map类型
+            entry 表示一个键值对
+        -->
+        <property name="map">
+            <map>
+                <entry key="w1" value="张曼玉"/>
+                <entry key="w2" value="孙俪"/>
+                <entry key="w3" value="李冰冰"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="p12" class="com.atguigu.pojo.Person">
+        <property name="name" value="12号bean"/>
+        <property name="props">
+            <!--
+                props标签表示赋值的属性类型是Properties类型
+                prop是一个键值对
+            -->
+            <props>
+                <prop key="user">root</prop>
+                <prop key="url">jdbc:mysql://localhost:3306/test</prop>
+                <prop key="password">root</prop>
+            </props>
+        </property>
+    </bean>
+
+    <util:map id="map01">
+        <entry key="1" value="战天一"/>
+        <entry key="2" value="海天二"/>
+        <entry key="3" value="海天三"/>
+    </util:map>
+
+    <bean id="p13" class="com.atguigu.pojo.Person">
+        <property name="name" value="13号bean"/>
+        <!--用ref属性把外部的map拿进来用，就不用使用内部map标签再造一个了-->
+        <property name="map" ref="map01"/>
+    </bean>
+
+    <bean id="p14" class="com.atguigu.pojo.Person">
+        <property name="name" value="14号bean"/>
+        <!--级联属性操作之前要先给子对象赋值-->
+        <property name="car" ref="car"/>
+        <!--级联属性赋值-->
+        <property name="car.carNo" value="换了高级车"/>
+    </bean>
+
+    <!--工厂模式用静态方法，则没有实例，所以属性是：factory-method-->
+    <bean id="p15" class="com.atguigu.factory.PersonFactory" factory-method="createPerson"/>
+
+    <!--配置工厂实例对象之后，才能使用-->
+
+    <bean id="personFactory" class="com.atguigu.factory.PersonFactory"/>
+
+    <!--工厂模式用实例方法，有实例对象，所以用到的属性是：factory-method + factory-bean-->
+    <bean id="p16" class="com.atguigu.factory.PersonFactory" factory-bean="personFactory" factory-method="createPerson2"/>
+
+    <bean id="p17" class="com.atguigu.factory.PersonFactoryBean"/>
+
+    <bean id="p100" class="com.atguigu.pojo.Person">
+        <property name="name" value="这是父类bean"/>
+        <property name="age" value="18"/>
+        <property name="phone" value="110"/>
+        <property name="car">
+            <bean id="car02" class="com.atguigu.pojo.Car">
+                <property name="carType" value="神车3号"/>
+                <property name="carNo" value="莱斯莱斯"/>
+            </bean>
+        </property>
+        <property name="cities">
+            <list>
+                <value>新疆</value>
+                <value>西藏</value>
+                <value>青海</value>
+                <value>东海</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="k1" value="v1"/>
+                <entry key="k2" value="v2"/>
+                <entry key="k3" value="v3"/>
+            </map>
+        </property>
+        <property name="props">
+            <props>
+                <prop key="k1">v1</prop>
+                <prop key="k2">v2</prop>
+                <prop key="k3">v3</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="p18" class="com.atguigu.pojo.Person" parent="p100">
+        <property name="name" value="18号bean"/>
+    </bean>
+
+</beans>
+

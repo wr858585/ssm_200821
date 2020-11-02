@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--以上是固定的格式，每次照着粘贴-->
+
+<!--namespace属性是名称空间（包名），它的值只能等于Mapper接口的全类名-->
+
+<mapper namespace="com.atguigu.mapper.ClazzMapper">
+    
+    <resultMap id="queryClazzByIdForSimpleResultMap" type="com.atguigu.pojo.Clazz">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--
+            collection标签用于配置集合类型的属性
+            property：是属性名students
+            ofType：是集合中每一个元素的具体类型Student
+            注意二者的区分！
+        -->
+        <collection property="students" ofType="com.atguigu.pojo.Student">
+            <id column="stu_id" property="id"/>
+            <result column="stu_name" property="name"/>
+        </collection>
+    </resultMap>
+
+    <!--
+        /**
+     * 一次性把班级和学生所有信息，全部查询出来
+     * @return
+     */
+    Clazz queryClazzByIdForSimple();
+    -->
+    <select id="queryClazzByIdForSimple" resultMap="queryClazzByIdForSimpleResultMap">
+        select
+            t_clazz.id, t_clazz.name, t_student.id as stu_id, t_student.name as stu_name
+        from
+            t_clazz join t_student
+        on
+            t_clazz.id = t_student.clazz_id
+        where
+            t_clazz.id = #{id};
+    </select>
+
+    <!--
+        /**
+     * 分两次查询，一次查班级，一次查学生。当前方法只查班级，学生用的时候再查学生
+     * @param id
+     * @return
+     */
+    Clazz queryClazzByIdForTwoSteps(Integer id);
+    -->
+    <resultMap id="queryClazzByIdForTwoStepsResultMap" type="com.atguigu.pojo.Clazz">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--
+            collection标签可以把一次性查询回来的数据，封装为集合；也可以通过调用一个查询，得到集合
+            property：属性名
+            column：列名，且将这个列名给调用的查询语句作参数
+            select：调用什么查询语句
+        -->
+        <collection property="students" column="id" select="com.atguigu.mapper.StudentMapper.queryStudentsByClazzId"/>
+    </resultMap>
+
+    <select id="queryClazzByIdForTwoSteps" resultMap="queryClazzByIdForTwoStepsResultMap">
+        select id, name from t_clazz where id = #{id};
+    </select>
+
+    <!--
+        /**
+     * 分两次查询，一次查班级，一次查学生。当前方法只查班级，学生用的时候再查学生
+     * @param id
+     * @param name
+     * @return
+     */
+    Clazz queryClazzByIdAndLikeNameForTwoSteps(Integer id, String name);
+    -->
+    <resultMap id="queryClazzByIdAndLikeNameForTwoStepsResultMap" type="com.atguigu.pojo.Clazz">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <collection property="students" column="{param1=id,param2=studentName}" select="com.atguigu.mapper.StudentMapper.queryStudentByClazzIdAndLikeName"/>
+    </resultMap>
+
+    <select id="queryClazzByIdAndLikeNameForTwoSteps" resultMap="queryClazzByIdAndLikeNameForTwoStepsResultMap">
+        select id, name, #{studentName} as studentName from t_clazz where id = #{clazzId};
+    </select>
+
+</mapper>
