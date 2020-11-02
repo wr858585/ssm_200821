@@ -57,4 +57,77 @@ public class SpringTest {
         System.out.println(p5);
     }
 
+    @Test
+    public void test6(){
+        Person p6 = (Person)applicationContext.getBean("p6");
+        System.out.println(p6);
+    }
+
+    @Test
+    public void test8(){
+        Person p8 = (Person)applicationContext.getBean("p8");
+        System.out.println(p8);
+    }
+
+    @Test
+    public void test9(){
+        Person p9 = (Person)applicationContext.getBean("p9");
+        System.out.println(p9);
+    }
+
+    @Test
+    public void test10(){
+        Person p10 = (Person)applicationContext.getBean("p10");
+        System.out.println(p10);
+    }
+
+    @Test
+    public void test11(){
+        Person p11 = (Person)applicationContext.getBean("p11");
+        System.out.println(p11);
+    }
+
+    @Test
+    public void test12(){
+        Person p12 = (Person)applicationContext.getBean("p12");
+        System.out.println(p12);
+    }
+
+    @Test
+    public void test13(){
+        Person p13 = (Person)applicationContext.getBean("p13");
+        System.out.println(p13);
+        //外部也可以获取到map01
+        System.out.println(applicationContext.getBean("map01"));
+    }
+
+    @Test
+    public void test14(){
+        Person p14 = (Person)applicationContext.getBean("p14");
+        System.out.println(p14);
+    }
+
+    @Test
+    public void test15(){
+        Person p15 = (Person)applicationContext.getBean("p15");
+        System.out.println(p15);
+    }
+
+    @Test
+    public void test16(){
+        Person p16 = (Person)applicationContext.getBean("p16");
+        System.out.println(p16);
+    }
+
+    @Test
+    public void test17(){
+        Person p17 = (Person)applicationContext.getBean("p17");
+        System.out.println(p17);
+    }
+
+//    @Test
+
+
+
+
 }

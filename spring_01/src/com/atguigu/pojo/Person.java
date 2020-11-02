@@ -1,5 +1,9 @@
 package com.atguigu.pojo;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 /**
  * @author oono
  * @date 2020 10 31
@@ -10,6 +14,10 @@ public class Person {
     private String name;
     private Integer age;
     private String phone;
+    private Car car;
+    private List<String> cities;
+    private Map<String,String> map;
+    private Properties props;
 
     @Override
     public String toString() {
@@ -18,7 +26,80 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", phone='" + phone + '\'' +
+                ", car=" + car +
+                ", cities=" + cities +
+                ", map=" + map +
+                ", props=" + props +
                 '}';
+    }
+
+    public Person(Integer id, String name, Integer age, String phone, Car car, List<String> cities, Map<String, String> map, Properties props) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.car = car;
+        this.cities = cities;
+        this.map = map;
+        this.props = props;
+    }
+
+    public Properties getProps() {
+        return props;
+    }
+
+    public void setProps(Properties props) {
+        this.props = props;
+    }
+
+    public Map<String, String> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, String> map) {
+        this.map = map;
+    }
+
+    public Person(Integer id, String name, Integer age, String phone, Car car, List<String> cities, Map<String, String> map) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.car = car;
+        this.cities = cities;
+        this.map = map;
+    }
+
+
+    public List<String> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<String> cities) {
+        this.cities = cities;
+    }
+
+    public Person(Integer id, String name, Integer age, String phone, Car car, List<String> cities) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.car = car;
+        this.cities = cities;
+    }
+
+    public Person(Integer id, String name, String phone, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+    }
+
+    public Person(Integer id, String name, Integer age, String phone) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
     }
 
     public Integer getId() {
@@ -53,23 +134,22 @@ public class Person {
         this.phone = phone;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Person(Integer id, String name, Integer age, String phone, Car car) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.car = car;
+    }
+
     public Person() {
-        System.out.println("调用的是无参构造器");
-    }
-
-    public Person(Integer id, String name, Integer age, String phone) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.phone = phone;
-        System.out.println("调用的是有参构造器");
-    }
-
-    public Person(Integer id, String name, String phone, Integer age){
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.phone = phone;
-        System.out.println("用的第二个重载构造器");
     }
 }
