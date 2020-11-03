@@ -125,8 +125,24 @@ public class SpringTest {
         System.out.println(p17);
     }
 
-//    @Test
+    @Test
+    public void test18(){
+        Person p18 = (Person)applicationContext.getBean("p18");
+        System.out.println(p18);
+    }
 
+    @Test
+    public void test20(){
+        Person p20 = (Person)applicationContext.getBean("p20");
+        System.out.println(p20);
+    }
+
+    @Test
+    public void test21(){
+        Person p21 = (Person)applicationContext.getBean("p21");
+        System.out.println(p21);
+
+    }
 
 
 

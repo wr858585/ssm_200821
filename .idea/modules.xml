@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/mybatis_01/mybatis_01.iml" filepath="$PROJECT_DIR$/mybatis_01/mybatis_01.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis_onetoone/mybatis_onetoone.iml" filepath="$PROJECT_DIR$/mybatis_onetoone/mybatis_onetoone.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis_ontomany/mybatis_ontomany.iml" filepath="$PROJECT_DIR$/mybatis_ontomany/mybatis_ontomany.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-ioc1/spring-ioc1.iml" filepath="$PROJECT_DIR$/spring-ioc1/spring-ioc1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-ioc2/spring-ioc2.iml" filepath="$PROJECT_DIR$/spring-ioc2/spring-ioc2.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_01/spring_01.iml" filepath="$PROJECT_DIR$/spring_01/spring_01.iml" />
       <module fileurl="file://$PROJECT_DIR$/ssm_200821.iml" filepath="$PROJECT_DIR$/ssm_200821.iml" />
     </modules>
