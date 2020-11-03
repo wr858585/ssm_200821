@@ -19,6 +19,14 @@ public class Person {
     private Map<String,String> map;
     private Properties props;
 
+    public void init(){
+        System.out.println("init方法执行了");
+    }
+
+    public void destroy(){
+        System.out.println("destroy方法执行了");
+    }
+
     @Override
     public String toString() {
         return "Person{" +

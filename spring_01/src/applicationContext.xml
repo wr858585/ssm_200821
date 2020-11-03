@@ -167,9 +167,11 @@
     <!--工厂模式用实例方法，有实例对象，所以用到的属性是：factory-method + factory-bean-->
     <bean id="p16" class="com.atguigu.factory.PersonFactory" factory-bean="personFactory" factory-method="createPerson2"/>
 
-    <bean id="p17" class="com.atguigu.factory.PersonFactoryBean"/>
+    <!--scope属性可以时单例：singleton | 多例prototype-->
+    <bean id="p17" class="com.atguigu.factory.PersonFactoryBean" scope="prototype"/>
 
-    <bean id="p100" class="com.atguigu.pojo.Person">
+    <!--abstract属性为可选，表示是否为抽象bean-->
+    <bean id="p100" class="com.atguigu.pojo.Person" abstract="true">
         <property name="name" value="这是父类bean"/>
         <property name="age" value="18"/>
         <property name="phone" value="110"/>
@@ -206,6 +208,18 @@
     <bean id="p18" class="com.atguigu.pojo.Person" parent="p100">
         <property name="name" value="18号bean"/>
     </bean>
+
+    <bean id="p20" class="com.atguigu.pojo.Person" autowire="byName">
+        <property name="name" value="20号bean"/>
+    </bean>
+
+    <bean id="p21" class="com.atguigu.pojo.Person" init-method="init" destroy-method="destroy">
+        <property name="name" value="21号bean"/>
+    </bean>
+
+    <!--配置bean后置处理器-->
+    <bean class="com.atguigu.processor.MyBeanPostProcessor"/>
+
 
 </beans>
 

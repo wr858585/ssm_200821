@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--数据库连接池配置-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <property name="url" value="jdbc:mysql//localhost:3306/test"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="initialSize" value="10"/>
+        <property name="maxActive" value="50"/>
+    </bean>
+
+    <!--
+        PropertySourcesPlaceholderConfigurer类读取xxx.properties属性配置文件中的信息到spring容器中
+    -->
+
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <!--
+            location属性：设置加载的文件位置
+            classpath：表示类路径下加载，类加载路径就是指src下的路径
+            classpath:jdbc.properties从类路径下加载jdbc.properties属性配置文件
+        -->
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource2">
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
+        <property name="url" value="${url}"/>
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="initialSize" value="${initialSize}"/>
+        <property name="maxActive" value="${maxActive}"/>
+    </bean>
+
+    <!--
+        context标签是一个名称空间，专门用于加载一些数据！比PropertySourcesPlaceholderConfigurer类更简单就加载jdbc.properties文件！
+        context:property-placeholder也是用来加载xxx.properties属性配置文件，但是更简便！
+    -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+</beans>
