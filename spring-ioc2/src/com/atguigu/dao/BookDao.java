@@ -1,5 +1,8 @@
 package com.atguigu.dao;
 
+import com.atguigu.pojo.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,5 +16,10 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public class BookDao {
+public class BookDao extends BaseDao<Book>{
+
+    @Override
+    public void saveEntity(Book entity) {
+        System.out.println("BookDao保存：" + entity);
+    }
 }

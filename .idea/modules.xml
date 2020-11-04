@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/aop-pre/aop-pre.iml" filepath="$PROJECT_DIR$/aop-pre/aop-pre.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aop_xml/aop_xml.iml" filepath="$PROJECT_DIR$/aop_xml/aop_xml.iml" />
       <module fileurl="file://$PROJECT_DIR$/mbg/mbg.iml" filepath="$PROJECT_DIR$/mbg/mbg.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis_01/mybatis_01.iml" filepath="$PROJECT_DIR$/mybatis_01/mybatis_01.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis_onetoone/mybatis_onetoone.iml" filepath="$PROJECT_DIR$/mybatis_onetoone/mybatis_onetoone.iml" />
