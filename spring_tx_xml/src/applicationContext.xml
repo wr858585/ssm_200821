@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--加载jdbc.properties配置文件信息-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
@@ -29,6 +30,19 @@
 
     <!--配置包扫描-->
     <context:component-scan base-package="com"/>
+
+    <!--配置事务管理器-->
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--tx:annotation-driven标签要跟注解@Transactional一起组合使用，才会生效-->
+    <!--还要给需要的事务transaction的类加上代理proxy-->
+
+    <!--transaction-manager的值默认就是transactionManager,所以如果配置事务管理器的bean标签中，id配的是transactionManager,则这里可以省略它，看，是灰色的-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <aop:annotation-driven/>
 
 
 

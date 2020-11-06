@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="druid-1.1.9 (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/druid-1.1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/junit_4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/mysql-connector-java-5.1.37-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/org.hamcrest.core_1.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-aop-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-aspects-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-beans-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-context-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-core-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-expression-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-jcl-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-jdbc-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-orm-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-test-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring_tx_xml/lib/spring-tx-5.2.5.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,18 +1,18 @@
 package com.atguigu.test;
 
 import com.atguigu.pojo.Employee;
+import com.atguigu.EmployeeDao;
+import com.atguigu.tx.service.TransactionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +36,12 @@ public class SpringTest {
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    EmployeeDao employeeDao;
+
+    @Autowired
+    TransactionService transactionService;
 
     @Test
     public void test2(){
@@ -138,7 +144,7 @@ public class SpringTest {
     @Test
     public void test9(){
 
-
-
+        System.out.println(employeeDao.queryEmployeeById(1));
     }
+
 }
