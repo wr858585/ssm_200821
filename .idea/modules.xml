@@ -15,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/spring_tx_xml/spring_tx_xml.iml" filepath="$PROJECT_DIR$/spring_tx_xml/spring_tx_xml.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_web/spring_web.iml" filepath="$PROJECT_DIR$/spring_web/spring_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/springmvc_01/springmvc_01.iml" filepath="$PROJECT_DIR$/springmvc_01/springmvc_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springmvc_scope/springmvc_scope.iml" filepath="$PROJECT_DIR$/springmvc_scope/springmvc_scope.iml" />
       <module fileurl="file://$PROJECT_DIR$/ssm_200821.iml" filepath="$PROJECT_DIR$/ssm_200821.iml" />
     </modules>
   </component>

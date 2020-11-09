@@ -1,12 +1,17 @@
 package com.atguigu.controller;
 
+import com.atguigu.pojo.Person;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 
 /**
  * @author oono
@@ -70,9 +75,85 @@ public class HelloController {
         return "ok";
     }
 
-    @RequestMapping(path = "/param3 ")
+    @RequestMapping(path = "/param3")
     public String param3(String[] hobby){
-        System.out.println("hobby = " + hobby);
+        System.out.println("hobby = " + Arrays.asList(hobby));
         return "ok";
     }
+
+    @RequestMapping(path = "/param4")
+    public String param4(@RequestParam(name = "user", required = false, defaultValue = "我是默认值萌萌哒") String username){
+        System.out.println("username = " + username);
+        return "ok";
+    }
+
+    @RequestMapping(path = "/param5")
+    public String param5(@RequestHeader(name = "user-Agent") String userAgent, @RequestHeader(name = "Accept-Encoding") String acceptEncoding){
+        System.out.println("请求头userAgent = " + userAgent);
+        System.out.println("请求头acceptEncoding = " + acceptEncoding);
+        return "ok";
+    }
+
+    @RequestMapping(value = "/param6")
+    public String param6(String jsessionId){
+        System.out.println("cookie的值 = " + jsessionId);
+        return "ok";
+    }
+
+    @RequestMapping(value = "/param7")
+    public String param7(Person person){
+        System.out.println("person = " + person);
+        return "ok";
+    }
+
+    @RequestMapping(value = "/return1")
+    public String return1(){
+        System.out.println("return1()");
+        return "ok";
+    }
+
+    //显式请求转发
+    @RequestMapping(value = "/return2")
+    public String return2(){
+        System.out.println("return2()");
+        return "forward:/pages/ok.jsp";
+    }
+
+    //显式请求重定向
+    @RequestMapping(value = "/return3")
+    public String return3(){
+        System.out.println("return3()");
+        return "redirect:/pages/ok.jsp";
+    }
+
+    @RequestMapping(value = "/modelAndView1")
+    public ModelAndView modelAndView1(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("ok");
+        return modelAndView;
+    }
+
+    @RequestMapping(path = "/modelAndView2")
+    public ModelAndView modelAndView2(){
+        ModelAndView modelAndView = new ModelAndView("ok");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "modelAndView3")
+    public ModelAndView modelAndView3(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("forward:/pages/ok.jsp");
+        return modelAndView;
+    }
+
+    @RequestMapping(path = "/modelAndView4")
+    public ModelAndView modelAndView4(){
+        ModelAndView modelAndView = new ModelAndView("redirect:/pages/ok.jsp");
+        return modelAndView;
+    }
+
+
+
+
+
 }
