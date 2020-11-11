@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--文件上传解析器CommonsMultipartResolver的id必须是multipartResolver，底层写死了，不然识别不了！-->
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+        <!--有很多可以配的，这里只需要解决中文乱码文件上传问题，所以只用配defaultEncoding默认字符集为UTF-8-->
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+</beans>

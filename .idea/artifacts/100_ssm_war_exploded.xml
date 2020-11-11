@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="100_ssm:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/100_ssm_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="100_ssm/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="100_ssm" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="100_ssm" />
+          <element id="file-copy" path="$PROJECT_DIR$/mbg/lib/mybatis-generator-core-1.3.2.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
